@@ -11,6 +11,26 @@
     <input type="text" name="data">
     <button type="submit">Send</button>
 </form>    
-    
+
+{% if images %}
+    <form method="get">
+        <label for="image-select">Choose an image:</label>
+        <select id="image-select" name="img">
+            {% for img in images %}
+                <option value="{{ img }}">{{ img }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">View Image</button>
+    </form>
+{% endif %}
+
+
+{% if image %}
+    <h2>Selected Image: {{ image }}</h2>
+    <img src="{{ url_for("static", filename=image) }}" alt="{{ image }}">
+{% else %}
+    <h2>No Image Selected</h2>
+{% endif %}
+
 </body>
 </html>
